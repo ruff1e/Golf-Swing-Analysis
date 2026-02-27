@@ -1,5 +1,5 @@
 import { auth } from "@/lib/auth";
-import VideoUploadClientPage from "./upload-client";
+import DashboardClientPage from "./dashboard-client";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
@@ -13,5 +13,5 @@ export default async function DashboardPage() {
     redirect("/auth");
   }
 
-  return <VideoUploadClientPage />;
+  return <DashboardClientPage />;
 }

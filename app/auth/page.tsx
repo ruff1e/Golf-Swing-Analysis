@@ -1,17 +1,18 @@
 import { auth } from "@/lib/auth";
-import VideoUploadClientPage from "./upload-client";
 import { headers } from "next/headers";
+import AuthClientPage from "./auth-page";
 import { redirect } from "next/navigation";
 
 
-export default async function DashboardPage() {
+export default async function AuthPage() {
   const session = await auth.api.getSession({
     headers: await headers(),
   });
 
-  if(!session) {
-    redirect("/auth");
+
+  if(session) {
+    redirect("/dashboard");
   }
 
-  return <VideoUploadClientPage />;
+  return <AuthClientPage />;
 }
