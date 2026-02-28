@@ -23,6 +23,8 @@ export default function AuthClientPage() {
     setIsLoading(true);
     setError("");
 
+
+    // try to sign in the user
     try {
       if (activeTab === "signIn") {
         const result = await signIn(email, password);
@@ -33,7 +35,9 @@ export default function AuthClientPage() {
         else {
           setError("invalid email or password");
         }
-      } else {
+      } 
+      // if the user is not signing in, they must be signing up, so we create a new account for them
+      else {
         const result = await signUp(email, password, name);
         if(result.user) {
           router.push("/");
@@ -122,7 +126,7 @@ export default function AuthClientPage() {
           </button>
         </form>
 
-        {/* Toggle Logic */}
+        {/* Toggle between sign in and sign up */}
         <div className="mt-6 text-center">
           <button 
             type="button"

@@ -6,7 +6,7 @@ export default function HomePage() {
 
     <main className="min-h-screen bg-black text-white">
 
-      {/* 2. Hero Section */}
+      {/* Eye cather section */}
       <section className="flex flex-col items-center justify-center text-center px-4 py-24 sm:py-32">
         <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight mb-6">
           Pro-Level Analysis <br /> 
@@ -18,7 +18,7 @@ export default function HomePage() {
         </p>
 
 
-        {/* Analyze my swing button, sends to upload page */}
+        {/* Analyze my swing button, sends to upload page, (upload page sends to auth page if the user is not logged in) */}
         <div className="flex gap-4">
           <Link href="/upload" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-bold transition-all shadow-lg shadow-emerald-500/20"
           >

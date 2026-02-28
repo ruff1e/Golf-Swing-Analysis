@@ -13,5 +13,5 @@ export default async function DashboardPage() {
     redirect("/auth");
   }
 
-  return <VideoUploadClientPage />;
+  return <VideoUploadClientPage user={session.user}/>;
 }
