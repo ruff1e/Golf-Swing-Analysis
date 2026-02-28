@@ -144,7 +144,8 @@ export default function DashboardClientPage({user, videos,}: {user: User; videos
                     </p>
                   </div>
                   <Link
-                    href={`/dashboard/video/${video.id}`}
+                    href={`/dashboard`}
+                    // href={`/dashboard/video/${video.id}`} //for later use when dashboard/videos page is implemented for reviewing the finished product
                     className="h-8 w-8 bg-white/5 rounded-lg flex items-center justify-center hover:bg-emerald-500 transition-colors group"
                   >
                     <span className="text-white group-hover:text-black">
