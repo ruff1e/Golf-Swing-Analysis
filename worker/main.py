@@ -138,7 +138,7 @@ def update_db(video_id: str, proc_path: str):
     conn = psycopg2.connect(DATABASE_URL)
     cur = conn.cursor()
 
-    # Parameterized query — never use f-strings with SQL, prevents SQL injection
+    # Parameterized query dont use f-strings with SQL to prevents SQL injection
     cur.execute(
         """
         UPDATE "video"
@@ -153,11 +153,9 @@ def update_db(video_id: str, proc_path: str):
     conn.close()
 
 
-def get_next_job(r: redis.Redis):
-    
+def get_next_job(r: redis.Redis):    
 
     result = r.blpop("bull:video-processing:wait", timeout=5)
-
     
     if result is None:
         return None
