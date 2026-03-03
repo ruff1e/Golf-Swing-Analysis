@@ -5,6 +5,7 @@ import { join } from "path";
 import { existsSync } from "fs";
 import { auth, prisma } from "../auth";
 import { headers } from "next/headers";
+import { enqueueVideoJob } from "../queue";
 
 
 export async function uploadVideoAction(formData: FormData) {
@@ -45,6 +46,13 @@ export async function uploadVideoAction(formData: FormData) {
             rawVideoPath: filePath,
         },
     });
+
+    await enqueueVideoJob({
+        videoId,
+        userId: session.user.id,
+        filePath,
+    });
+
 
     return { success: true};
 
