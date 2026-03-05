@@ -75,7 +75,7 @@ export default function DashboardClientPage({user, videos,}: {user: User; videos
       <div className="space-y-6">
         <h2 className="text-2xl font-bold text-white">Recent Sessions</h2>
 
-        {/* 2. Conditional Rendering: Show Gallery if videos exist, otherwise show Empty State */}
+        {/* Show Gallery if videos exist otherwise show Empty State */}
         {totalSwings === 0 ? (
           <div className="border-2 border-dashed border-white/5 rounded-3xl p-20 flex flex-col items-center justify-center text-center bg-zinc-900/20">
             <div className="w-16 h-16 bg-emerald-500/10 rounded-full flex items-center justify-center mb-6 text-emerald-500">
@@ -144,8 +144,7 @@ export default function DashboardClientPage({user, videos,}: {user: User; videos
                     </p>
                   </div>
                   <Link
-                    href={`/dashboard`}
-                    // href={`/dashboard/video/${video.id}`} //for later use when dashboard/videos page is implemented for reviewing the finished product
+                    href={`/dashboard/video/${video.id}`}
                     className="h-8 w-8 bg-white/5 rounded-lg flex items-center justify-center hover:bg-emerald-500 transition-colors group"
                   >
                     <span className="text-white group-hover:text-black">

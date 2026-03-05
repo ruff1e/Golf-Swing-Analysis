@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
-import { auth } from "@/lib/auth";
+import { auth, prisma } from "@/lib/auth";
 import { headers } from "next/headers";
 import SignOutButton from "./components/SignOutButton";
 
@@ -13,15 +13,20 @@ export const metadata: Metadata = {
   description: "AI Golf Swing Analyzer",
 };
 
-export default async function RootLayout({
-  children,
-}: {
+export default async function RootLayout({children,}: {
   children: React.ReactNode;
 }) {
-  // Check for an active session on the server
   const session = await auth.api.getSession({
     headers: await headers(),
   });
+
+const user = session ? await prisma.user.findUnique({
+  where: { id: session.user.id },
+  select: { role: true, name:true },
+}) 
+: null;
+
+const isAdmin = user?.role === "ADMIN";
 
   return (
     <html lang="en">
@@ -44,6 +49,16 @@ export default async function RootLayout({
                 <Link href="/dashboard" className="text-sm font-medium text-gray-400 hover:text-emerald-400 transition">
                   Dashboard
                 </Link>
+
+                {/* Only visible to ADMIN users */}
+                {isAdmin && (
+                  <Link
+                    href="/admin"
+                    className="text-sm font-medium text-purple-400 hover:text-purple-300 transition"
+                  >
+                    Coach Panel
+                  </Link>
+                )}
                 
                 <div className="flex items-center gap-3 pl-4 border-l border-white/10">
                   <div className="h-8 w-8 rounded-full bg-emerald-500 flex items-center justify-center font-bold text-black text-xs">
